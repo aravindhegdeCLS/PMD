@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data
+    xmlns="http://pmd.sourceforge.net/rule-tests"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests http://pmd.sourceforge.net/rule-tests_1_0_0.xsd">
+
+ 
+
+    <test-code>
+        <description>Use DateUtil methods to getNextCycleDate </description>
+        <expected-problems>4</expected-problems>
+        <code><![CDATA[
+public class Foo {
+    public void test1() {
+       
+       loan.DateUtil.getNextCycleDate(); // good practice
+                
+                getNextCycleDate();// bad practice
+                
+                customclass.aNextCycleDate();//bad
+				getMyCycleDate();	//bad
+                
+                Date myDate = Date.newInstance(1960, 2, 17);
+				Date nextcycleDate = mydate.addMonths(10); //give warning against such practices
+                
+    }
+}
+        ]]></code>
+    </test-code>
+
+ 
+
+    
+</test-data>

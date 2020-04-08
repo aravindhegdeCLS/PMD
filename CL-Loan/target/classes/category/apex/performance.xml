@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+
+<ruleset name="Performance"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+Rules that flag suboptimal code.
+    </description>
+    <rule name="AvoidUpdateForContract"
+          since="6.0.0"
+          message="Avoid Update For Contract"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidUpdateForContractRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+For+CL+Loan+1">
+        <description>
+Avoid Update For Contract
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+        for (Integer i = 0; i < 10; i++) {
+            Contract a=[Select name from Contract];
+            a.name="ok"
+            update a;
+        }
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="UseObjectCacheQueryUtilToGetFields"
+          since="6.0.0"
+          message="Use ObjectCacheQueryUtil To Get Fields"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.UseObjectCacheQueryUtilToGetFieldsRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/pages/viewpage.action?pageId=88531170">
+        <description>
+Use ObjectCacheQueryUtil To Get Fields
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+            String fields = loan.ObjectCacheQuery.getSlidingBillingRangeFields();
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="UseGlobalUtilFacadeForUtility"
+          since="6.0.0"
+          message="Use GlobalUtilFacade for more utility functions"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.UseGlobalUtilFacadeForUtilityRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/pages/viewpage.action?pageId=88531170">
+        <description>
+Use GlobalUtilFacade for more utility functions
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+    	loan1.GlobalLoanUtilFacade.getCurrentSystemDate();
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="UseGlobalProcessFacadeForBatchJobs"
+          since="6.0.0"
+          message="Use GlobalProcessFacade to invoke batch jobs and change dates"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.UseGlobalProcessFacadeForBatchJobsRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+For+CL+Loan+1">
+        <description>
+Use GlobalProcessFacade to invoke batch jobs and change dates
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+        loan.GlobalProcessFacade.startBillingJobForADay(null, null);//good practice
+       startBillingJobForADay(null, null);//bad practice
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="UseDateUtilToGetNextCycleDate"
+          since="6.0.0"
+          message="Use DateUtil to Get next cycle date"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.UseDateUtilToGetNextCycleDateRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+For+CL+Loan+1">
+        <description>
+Use DateUtil to Get next cycle date
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+        loan.DateUtil.getNextCycleDate(date.newInstance(2018, 3, 16)               
+                , 1                                                                
+                , loan.LoanConstants.LOAN_PAYMENT_FREQ_SEMI_MONTHLY_PAY_DAY       
+                                , date.newInstance(2017, 09, 1)                                  
+                , date.newInstance(2017, 09, 15)                                 
+                , 1); // good practice
+                
+                getNextCycleDate();// bad practice
+    }
+}
+]]>
+        </example>
+    </rule>
+       <rule name="UseHolidayUtilToGetNextDate"
+          since="6.0.0"
+          message="Use HolidayUTil to Get next/previous working date"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.UseHolidayUtilToGetNextDateRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+For+CL+Loan+1">
+        <description>
+Use HolidayUtil to get next working date, previous working date
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+        Date currentDate = new loan.GlobalLoanUtilFacade().getCurrentSystemDate();
+ 
+//To get next working date
+Date nextWorkingDate = loan.HolidayUtil.INSTANCE.getNextWorkingDate(currentDate);//good practice
+ 
+//To get previous working date
+Date prevWorkingDate = loan.HolidayUtil.INSTANCE.getPreviousWorkingDate(currentDate);//good practice
+
+getPreviousWorkingDate(currentDate);//bad practice
+getNextWorkingDate(currentDate);//bad practice
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="UseLoanTransactionUtilForUtility"
+          since="6.0.0"
+          message="Use LoanTransactionUtil for common utility functions"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.UseLoanTransactionUtilForUtilityRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+For+CL+Loan+1">
+        <description>
+Use LoanTransactionUtil for common utility functions
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+public class Something {
+    public static void main( String as[] ) {
+        
+      loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+Decimal unRoundedAmount = 1.4325;
+Decimal roundedAmount = loan.LoanTransactionUtil.getRoundedAmount(loanAccount, unRoundedAmount); // good practice
+
+loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+Date transactionDate = Date.newInstance(2018,2,3);
+Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
+loan.LoanTransactionUtil.postInterestTillDate(loanAccount, transactionDate, systemDate);// good practice
+
+loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ'); 
+Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
+loan.LoanTransactionUtil.interestBearingDelinquencyLogic(loanAccount, systemDate);// good practice
+
+getRoundedAmount(loanAccount, unRoundedAmount);// bad practice
+postInterestTillDate(loanAccount, transactionDate, systemDate);// bad practice
+interestBearingDelinquencyLogic(loanAccount, systemDate);// bad practice
+    }
+}
+]]>
+        </example>
+    </rule>
+    <rule name="TestHelperMethod"
+          since="6.0.0"
+          message="TestHelper method"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.TestHelperMethodinTestClassandTestMethodRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+TestHelper+and+TestHelper2">
+        <description>
+TestHelper method 
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+
+]]>
+        </example>
+    </rule>
+    
+    <rule name="TestHelper2Method"
+          since="6.0.0"
+          message="TestHelper method"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.TestHelper2MethodRule"
+          externalInfoUrl="https://confluence.q2ebanking.com/display/DevAndRelProc/PMD+Rules+TestHelper+and+TestHelper2">
+        <description>
+TestHelper method 
+        </description>
+        <priority>3</priority>
+        <example>
+<![CDATA[
+
+]]>
+        </example>
+    </rule>
+</ruleset>

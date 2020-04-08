@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data
+    xmlns="http://pmd.sourceforge.net/rule-tests"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests http://pmd.sourceforge.net/rule-tests_1_0_0.xsd">
+
+ 
+
+    <test-code>
+        <description>Use LoanTransactionUtil for common utility functions</description>
+        <expected-problems>3</expected-problems>
+        <code><![CDATA[
+public class Foo {
+    public void test1() {
+       
+      loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+Decimal unRoundedAmount = 1.4325;
+Decimal roundedAmount = loan.LoanTransactionUtil.getRoundedAmount(loanAccount, unRoundedAmount); // good practice
+
+loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+Date transactionDate = Date.newInstance(2018,2,3);
+Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
+loan.LoanTransactionUtil.postInterestTillDate(loanAccount, transactionDate, systemDate);// good practice
+
+loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ'); 
+Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
+loan.LoanTransactionUtil.interestBearingDelinquencyLogic(loanAccount, systemDate);// good practice
+
+getRoundedAmount(loanAccount, unRoundedAmount);// bad practice
+postInterestTillDate(loanAccount, transactionDate, systemDate);// bad practice
+interestBearingDelinquencyLogic(loanAccount, systemDate);// bad practice
+    }
+}
+        ]]></code>
+    </test-code>
+
+ 
+
+    
+</test-data>

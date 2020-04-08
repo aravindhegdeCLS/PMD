@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<ruleset name="Performance"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+  <description>
+The Performance ruleset contains a collection of good practices which should be followed.
+  </description>
+	<rule ref="category/apex/performance.xml/AvoidUpdateForContract" deprecated="true"/>
+	<rule ref="category/apex/performance.xml/UseObjectCacheQueryUtilToGetFields"/>
+	<rule ref="category/apex/performance.xml/UseGlobalUtilFacadeForUtility"/>
+	<rule ref="category/apex/performance.xml/TestHelperMethod" deprecated="true" />
+    <rule ref="category/apex/performance.xml/TestHelper2Method" deprecated="true" />
+	<rule ref="category/apex/performance.xml/UseGlobalProcessFacadeForBatchJobs" deprecated="true"/>
+	<rule ref="category/apex/performance.xml/UseDateUtilToGetNextCycleDate" deprecated="true"/>
+	<rule ref="category/apex/performance.xml/UseHolidayUtilToGetNextDate" deprecated="true"/>
+	<rule ref="category/apex/performance.xml/UseLoanTransactionUtilForUtility" deprecated="true"/>
+</ruleset>
