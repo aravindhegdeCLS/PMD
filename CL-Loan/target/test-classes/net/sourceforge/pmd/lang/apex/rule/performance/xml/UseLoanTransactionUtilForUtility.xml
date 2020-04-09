@@ -13,18 +13,18 @@
 public class Foo {
     public void test1() {
        
-      loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+      loan__Loan_Account__c loanAccount = TestHelper2.getLoanAccount('a4k1K000000PkKJ');
 Decimal unRoundedAmount = 1.4325;
-Decimal roundedAmount = loan.LoanTransactionUtil.getRoundedAmount(loanAccount, unRoundedAmount); // good practice
+Decimal roundedAmount = LoanTransactionUtil.getRoundedAmount(loanAccount, unRoundedAmount); // good practice
 
-loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+loan__Loan_Account__c loanAccount = TestHelper2.getLoanAccount('a4k1K000000PkKJ');
 Date transactionDate = Date.newInstance(2018,2,3);
-Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
-loan.LoanTransactionUtil.postInterestTillDate(loanAccount, transactionDate, systemDate);// good practice
+Date systemDate = GlobalLoanUtilFacade.getCurrentSystemDate();
+LoanTransactionUtil.postInterestTillDate(loanAccount, transactionDate, systemDate);// good practice
 
-loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ'); 
-Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
-loan.LoanTransactionUtil.interestBearingDelinquencyLogic(loanAccount, systemDate);// good practice
+loan__Loan_Account__c loanAccount = TestHelper2.getLoanAccount('a4k1K000000PkKJ'); 
+Date systemDate = GlobalLoanUtilFacade.getCurrentSystemDate();
+LoanTransactionUtil.interestBearingDelinquencyLogic(loanAccount, systemDate);// good practice
 
 getRoundedAmount(loanAccount, unRoundedAmount);// bad practice
 postInterestTillDate(loanAccount, transactionDate, systemDate);// bad practice

@@ -15,7 +15,7 @@ public class work
 public void work1()
 {
 Loan loan;
-loan.TestHelper2.createLoanPaymentSpread();
+TestHelper2.createLoanPaymentSpread();
 
 }
 }

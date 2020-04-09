@@ -16,10 +16,10 @@ public class Foo {
        Date currentDate = new loan.GlobalLoanUtilFacade().getCurrentSystemDate();
  
 //To get next working date
-Date nextWorkingDate = loan.HolidayUtil.INSTANCE.getNextWorkingDate(currentDate);//good practice
+Date nextWorkingDate = HolidayUtil.INSTANCE.getNextWorkingDate(currentDate);//good practice
  
 //To get previous working date
-Date prevWorkingDate = loan.HolidayUtil.INSTANCE.getPreviousWorkingDate(currentDate);//good practice
+Date prevWorkingDate = HolidayUtil.INSTANCE.getPreviousWorkingDate(currentDate);//good practice
 
 getPreviousWorkingDate(currentDate);//bad practice
 getNextWorkingDate(currentDate);//bad practice

@@ -11,8 +11,8 @@
         <code><![CDATA[
 public class Foo {
 	public void test1() {
-		String fields = loan.ObjectCacheQuery.getLoanSnapshotFields();
-		String fields = loan.ObjectCacheQuery.getSlidingBillingRangeFields();
+		String fields = ObjectCacheQuery.getLoanSnapshotFields();
+		String fields = ObjectCacheQuery.getSlidingBillingRangeFields();
 	}
 }
 		]]></code>

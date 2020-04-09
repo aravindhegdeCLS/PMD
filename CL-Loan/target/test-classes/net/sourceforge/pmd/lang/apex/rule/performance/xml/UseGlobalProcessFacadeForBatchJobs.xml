@@ -13,10 +13,10 @@
 public class Foo {
     public void test1() {
        
-       loan.GlobalProcessFacade.startBillingJobForADay(null, null);//good practice
+       GlobalProcessFacade.startBillingJobForADay(null, null);//good practice
        startBillingJobForADay(null, null);//bad practice
        startBillingLocJobForADay(null,null);
-       loan.GlobalProcessFacade.startBillingLocJobForADay(null,null);
+       GlobalProcessFacade.startBillingLocJobForADay(null,null);
     }
 }
         ]]></code>

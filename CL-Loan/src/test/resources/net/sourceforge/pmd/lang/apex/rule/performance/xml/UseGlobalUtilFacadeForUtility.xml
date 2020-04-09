@@ -11,7 +11,7 @@
         <code><![CDATA[
 public class Foo {
 	public void test1() {
-		loan1.GlobalLoanUtilFacade.getCurrentSystemDate();	
+		GlobalLoanUtilFacade1.getCurrentSystemDate();	
 	}
 }
 		]]></code>

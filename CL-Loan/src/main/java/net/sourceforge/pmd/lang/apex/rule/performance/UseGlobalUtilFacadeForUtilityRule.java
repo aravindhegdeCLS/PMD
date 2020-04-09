@@ -24,7 +24,7 @@ public class UseGlobalUtilFacadeForUtilityRule extends AbstractApexRule{
 
 	@Override
     public Object visit(ASTMethodCallExpression node, Object data) {
-		if(listOfMethods.contains(node.getMethodName())&&!node.getFullMethodName().equals("loan.GlobalLoanUtilFacade."+node.getMethodName())) {
+		if(listOfMethods.contains(node.getMethodName())&&!node.getFullMethodName().contains("GlobalLoanUtilFacade."+node.getMethodName())) {
 			addViolation(data,node);
 		}
         return data;

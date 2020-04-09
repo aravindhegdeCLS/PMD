@@ -44,7 +44,7 @@ Use ObjectCacheQueryUtil To Get Fields
 <![CDATA[
 public class Something {
     public static void main( String as[] ) {
-            String fields = loan.ObjectCacheQuery.getSlidingBillingRangeFields();
+            String fields = ObjectCacheQuery.getSlidingBillingRangeFields();
     }
 }
 ]]>
@@ -63,7 +63,7 @@ Use GlobalUtilFacade for more utility functions
 <![CDATA[
 public class Something {
     public static void main( String as[] ) {
-    	loan1.GlobalLoanUtilFacade.getCurrentSystemDate();
+    	GlobalLoanUtilFacade.getCurrentSystemDate();
     }
 }
 ]]>
@@ -82,7 +82,7 @@ Use GlobalProcessFacade to invoke batch jobs and change dates
 <![CDATA[
 public class Something {
     public static void main( String as[] ) {
-        loan.GlobalProcessFacade.startBillingJobForADay(null, null);//good practice
+       GlobalProcessFacade.startBillingJobForADay(null, null);//good practice
        startBillingJobForADay(null, null);//bad practice
     }
 }
@@ -102,7 +102,7 @@ Use DateUtil to Get next cycle date
 <![CDATA[
 public class Something {
     public static void main( String as[] ) {
-        loan.DateUtil.getNextCycleDate(date.newInstance(2018, 3, 16)               
+        DateUtil.getNextCycleDate(date.newInstance(2018, 3, 16)               
                 , 1                                                                
                 , loan.LoanConstants.LOAN_PAYMENT_FREQ_SEMI_MONTHLY_PAY_DAY       
                                 , date.newInstance(2017, 09, 1)                                  
@@ -131,10 +131,10 @@ public class Something {
         Date currentDate = new loan.GlobalLoanUtilFacade().getCurrentSystemDate();
  
 //To get next working date
-Date nextWorkingDate = loan.HolidayUtil.INSTANCE.getNextWorkingDate(currentDate);//good practice
+Date nextWorkingDate = HolidayUtil.INSTANCE.getNextWorkingDate(currentDate);//good practice
  
 //To get previous working date
-Date prevWorkingDate = loan.HolidayUtil.INSTANCE.getPreviousWorkingDate(currentDate);//good practice
+Date prevWorkingDate = HolidayUtil.INSTANCE.getPreviousWorkingDate(currentDate);//good practice
 
 getPreviousWorkingDate(currentDate);//bad practice
 getNextWorkingDate(currentDate);//bad practice
@@ -157,18 +157,18 @@ Use LoanTransactionUtil for common utility functions
 public class Something {
     public static void main( String as[] ) {
         
-      loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+      loan__Loan_Account__c loanAccount = TestHelper2.getLoanAccount('a4k1K000000PkKJ');
 Decimal unRoundedAmount = 1.4325;
-Decimal roundedAmount = loan.LoanTransactionUtil.getRoundedAmount(loanAccount, unRoundedAmount); // good practice
+Decimal roundedAmount = LoanTransactionUtil.getRoundedAmount(loanAccount, unRoundedAmount); // good practice
 
-loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ');
+loan__Loan_Account__c loanAccount = TestHelper2.getLoanAccount('a4k1K000000PkKJ');
 Date transactionDate = Date.newInstance(2018,2,3);
-Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
-loan.LoanTransactionUtil.postInterestTillDate(loanAccount, transactionDate, systemDate);// good practice
+Date systemDate = GlobalLoanUtilFacade.getCurrentSystemDate();
+LoanTransactionUtil.postInterestTillDate(loanAccount, transactionDate, systemDate);// good practice
 
-loan__Loan_Account__c loanAccount = loan.TestHelper2.getLoanAccount('a4k1K000000PkKJ'); 
-Date systemDate = loan.GlobalLoanUtilFacade.getCurrentSystemDate();
-loan.LoanTransactionUtil.interestBearingDelinquencyLogic(loanAccount, systemDate);// good practice
+loan__Loan_Account__c loanAccount = TestHelper2.getLoanAccount('a4k1K000000PkKJ'); 
+Date systemDate = GlobalLoanUtilFacade.getCurrentSystemDate();
+LoanTransactionUtil.interestBearingDelinquencyLogic(loanAccount, systemDate);// good practice
 
 getRoundedAmount(loanAccount, unRoundedAmount);// bad practice
 postInterestTillDate(loanAccount, transactionDate, systemDate);// bad practice

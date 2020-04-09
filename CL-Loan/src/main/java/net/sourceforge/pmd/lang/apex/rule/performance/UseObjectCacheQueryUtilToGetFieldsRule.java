@@ -42,7 +42,7 @@ public class UseObjectCacheQueryUtilToGetFieldsRule extends AbstractApexRule{
 
 	@Override
     public Object visit(ASTMethodCallExpression node, Object data) {
-		if(listOfMethods.contains(node.getMethodName())&&!node.getFullMethodName().equals("loan.ObjectCacheQueryUtil."+node.getMethodName())) {
+		if(listOfMethods.contains(node.getMethodName())&&!node.getFullMethodName().contains("ObjectCacheQueryUtil."+node.getMethodName())) {
 			addViolation(data,node);
 		}
         return data;

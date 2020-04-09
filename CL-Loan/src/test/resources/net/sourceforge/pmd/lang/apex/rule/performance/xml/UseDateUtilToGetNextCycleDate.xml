@@ -8,20 +8,17 @@
 
     <test-code>
         <description>Use DateUtil methods to getNextCycleDate </description>
-        <expected-problems>4</expected-problems>
+        <expected-problems>3</expected-problems>
         <code><![CDATA[
 public class Foo {
     public void test1() {
        
-       loan.DateUtil.getNextCycleDate(); // good practice
+       DateUtil.getNextCycleDate(); // good practice
                 
                 getNextCycleDate();// bad practice
                 
                 customclass.aNextCycleDate();//bad
 				getMyCycleDate();	//bad
-                
-                Date myDate = Date.newInstance(1960, 2, 17);
-				Date nextcycleDate = mydate.addMonths(10); //give warning against such practices
                 
     }
 }
