@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test-data
+    xmlns="http://pmd.sourceforge.net/rule-tests"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests http://pmd.sourceforge.net/rule-tests_1_0_0.xsd">
+
+    <test-code>
+        <description>Avoid Update For Contract</description>
+        <expected-problems>2</expected-problems>
+        <code><![CDATA[
+public class Foo {
+	public void test1() {
+		Contract c=[select name from Contract where addr='ok'];
+		c.name='myName';
+		update c;
+		Contract cont=[select name from Contract];
+		update cont;
+	}
+}
+		]]></code>
+	</test-code>
+    <test-code>
+        <description>Avoid Update For Contract</description>
+        <expected-problems>1</expected-problems>
+        <code><![CDATA[
+public class Foo {
+	public void test2() {
+		List<Contract> c=[select name from Contract where addr='ok'];
+		c.name='myName';
+		update c;
+	}
+}
+		]]></code>
+	</test-code>
+</test-data>

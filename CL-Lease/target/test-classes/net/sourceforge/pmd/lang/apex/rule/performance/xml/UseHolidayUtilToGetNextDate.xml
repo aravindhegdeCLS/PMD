@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data
+    xmlns="http://pmd.sourceforge.net/rule-tests"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests http://pmd.sourceforge.net/rule-tests_1_0_0.xsd">
+
+ 
+
+    <test-code>
+        <description>Use HolidayUtil to get next working date, previous working date</description>
+        <expected-problems>2</expected-problems>
+        <code><![CDATA[
+public class Foo {
+    public void test1() {
+       
+       Date currentDate = new loan.GlobalLoanUtilFacade().getCurrentSystemDate();
+ 
+//To get next working date
+Date nextWorkingDate = HolidayUtil.INSTANCE.getNextWorkingDate(currentDate);//good practice
+ 
+//To get previous working date
+Date prevWorkingDate = HolidayUtil.INSTANCE.getPreviousWorkingDate(currentDate);//good practice
+
+getPreviousWorkingDate(currentDate);//bad practice
+getNextWorkingDate(currentDate);//bad practice
+    }
+}
+        ]]></code>
+    </test-code>
+
+ 
+
+    
+</test-data>
